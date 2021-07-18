@@ -23,7 +23,7 @@
 #define DESTROY(type)                                                          \
     void destroy_##type(list_t_##type *_list) {                                \
         if (_list == NULL) return;                                             \
-        clear_##type(_list);                                                          \
+        clear_##type(_list);                                                   \
         free(_list);                                                           \
     }
 
