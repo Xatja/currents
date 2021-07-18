@@ -1,20 +1,33 @@
+#include <stdio.h>
 #include "linkedlist.h"
 
 int main(int argc, char* argv[]) {
-    List *list = build_list();
+    list_t_int *integer_list = build_list_int();
+    list_t_float *float_list = build_list_float();
 
-    int item1 = 10;
-    float item2 = 20.0;
+    int integer1 = 10;
+    int integer2 = 20;
+    float float1 = 10.0;
+    float float2 = 20.0;
 
-    add(list, &item1, INTEGER);
-    add(list, &item2, FLOAT);
+    push_int(integer_list, &integer1);
+    add_int(integer_list, &integer2);
 
-    delete_at_index(list, 0);
-    clear(list);
+    push_float(float_list, &float1);
+    push_float(float_list, &float1);
+    add_float(float_list, &float2);
 
-    printf("Size of list: %zu\n", size(list));
+    printf("Size: %zu\n", size_int(integer_list));
+    printf("Size: %zu\n", size_float(float_list));
 
-    destroy(list);
+    clear_int(integer_list);
+    clear_float(float_list);
+
+    printf("Size: %zu\n", size_int(integer_list));
+    printf("Size: %zu\n", size_float(float_list));
+
+    destroy_float(float_list);
+    destroy_int(integer_list);
 
     return 0;
 }
