@@ -8,8 +8,13 @@ int main(int argc, char** argv) {
     add(list, 40);
     push(list, 0);
     push(list, -10);
+    insert(list, 2, 200);
+
+    int data = value_at_index(list, 3);
+    printf("Value: %d\n", data);
 
     print(list);
     printf("%zu\n", size(list));
+    
     return 0;
 }
