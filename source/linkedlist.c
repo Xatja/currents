@@ -1,7 +1,8 @@
 #include "linkedlist.h"
 
+/* Make list generic */
 struct node {
-    int data; // void *
+    int data;
     Node *next;
 };
 
@@ -20,6 +21,13 @@ List *build_list() {
     List* list = (List*) malloc(sizeof(List));
     list->head = NULL;
     return list;
+}
+
+void delete(List *list) {
+    if (list == NULL) return;
+    clear(list);
+    free(list);
+    return;
 }
 
 void add(List *list, int data) {
@@ -73,6 +81,14 @@ size_t size(List *list) {
     return list_size;
 }
 
+void clear(List *list) {
+    while (node_at_index(list, 0) != NULL) 
+        delete_at_index(list, 0);
+
+    list->head = NULL;
+    return;
+}
+
 int value(Node *node) {
     return node->data;
 }
@@ -102,9 +118,25 @@ int value_at_index(List *list, size_t index) {
     return value(node);
 }
 
+void delete_at_index(List *list, size_t index) {
+    Node *prev, *node = node_at_index(list, index);
+    if (node == NULL) 
+        return;
+
+    if (index == 0) {
+        list->head = node->next;
+        free(node);
+        return;
+    }
+    
+    prev = node_at_index(list, index - 1);
+    prev->next = node->next;
+    free(node);
+    return;
+}
+
 void print(List *list) {
     if (list == NULL) {
-        printf("\n");
         return;
     }
 
